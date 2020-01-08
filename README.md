@@ -2,7 +2,7 @@
 ## Installation of IBM CloudPak for Integration 19.4.1 on RH OpenShift 4.2
 
 ### Install common services
-Login to load_balancer
+Login to load_balancer  
 `export KUBECONFIG=~/cp4i/auth/kubeconfig`  
 `oc login --username=username --password=password`  
 
@@ -11,22 +11,22 @@ Login to load_balancer
 `tar xvf installer_files/cluster/images/common-services-armonk-x86_64.tar.gz -O | sudo docker load`  
 `oc config view --flatten >kubeconfig`  
 
-installer_files/cluster/config.yaml	- insert nodes, password, storage
+installer_files/cluster/config.yaml	- insert nodes, password, storage  
 
-*cluster_nodes:
-  master:
-    - worker1.cp4i.tec.cz.ibm.com
-    - worker2.cp4i.tec.cz.ibm.com
-  proxy:
-    - worker1.cp4i.tec.cz.ibm.com
-    - worker2.cp4i.tec.cz.ibm.com
-  management:
-    - worker1.cp4i.tec.cz.ibm.com
-    - worker2.cp4i.tec.cz.ibm.com
+_cluster_nodes:  
+  master:  
+    - worker1.cp4i.tec.cz.ibm.com  
+    - worker2.cp4i.tec.cz.ibm.com  
+  proxy:  
+    - worker1.cp4i.tec.cz.ibm.com  
+    - worker2.cp4i.tec.cz.ibm.com  
+  management:  
+    - worker1.cp4i.tec.cz.ibm.com  
+    - worker2.cp4i.tec.cz.ibm.com_  
 
-default_admin_password: Passw0rd
-password_rules:
-- '(.*)'*
+_default_admin_password: Passw0rd  
+password_rules:  
+- '(.*)'_
 
 storage_class: thin
 ---
