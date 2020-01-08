@@ -47,7 +47,7 @@ https://console-openshift-console.apps.cp4i.tec.cz.ibm.com
 e.g. "deployer-dockercfg-bwfv5"
 
 ### Prepare StorageClass, persistent volume
-`oc get pv`
+`oc get pv`  
 `oc get storageclasses`
 
 Share nfs volume from the server for RWX  
@@ -59,7 +59,7 @@ Share nfs volume from the server for RWX
 `chmod -R 777 .`  
 
 Persistent Volume  
-in OpenShift - Storage - Persistent volumes - create
+in OpenShift - Storage - Persistent volumes - create  
 _apiVersion: v1
 kind: PersistentVolume
 metadata:
