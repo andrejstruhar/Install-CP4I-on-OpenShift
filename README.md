@@ -14,7 +14,8 @@ Login to load_balancer
 
 ### Edit config files
 installer_files/cluster/config.yaml	- insert nodes, password, storage  
-_cluster_nodes:  
+```yaml
+cluster_nodes:  
   master:  
     - worker1.cp4i.tec.cz.ibm.com  
     - worker2.cp4i.tec.cz.ibm.com  
@@ -26,8 +27,9 @@ _cluster_nodes:
     - worker2.cp4i.tec.cz.ibm.com  
 default_admin_password: Passw0rd  
 password_rules:  
-\- '(.*)'
+- '(.*)'
 storage_class: thin_
+```
 
 ### Run the installation
 `sudo docker run -t --net=host -e LICENSE=accept -v $(pwd):/installer/cluster:z -v /var/run:/var/run:z -v /etc/docker:/etc/docker:z --security-opt label:disable ibmcom/icp-inception-amd64:3.2.2 addon`  
@@ -60,7 +62,8 @@ Share nfs volume from the server for RWX
 
 Persistent Volume  
 in OpenShift - Storage - Persistent volumes - create  
-_apiVersion: v1  
+```yaml
+apiVersion: v1  
 kind: PersistentVolume  
 metadata:  
   name: acepv  
@@ -74,10 +77,12 @@ spec:
   nfs:  
     path: /mnt/nfs/ace  
     server: 192.168.28.17_
+```
 
 Persistent Volume Claim  
 In OpenShift create new PV claim, swith to YAML view, copy to .yaml file, edit. Create from CLI.  
 
+```yaml
 _kind: PersistentVolumeClaim  
 apiVersion: v1  
 metadata:  
@@ -91,7 +96,7 @@ spec:
       storage: 1Gi  
   storageClassName: nfs  
   volumeMode: Filesystem_
-
+```
 `oc create -n ace -f pvc.yaml`  
 
 ### Create ACE instance
@@ -108,6 +113,7 @@ Registry = name.namespace.svc.cluster.local:Port/path/image:version
 image-registry.openshift-image-registry.svc.cluster.local:5000/ace/ibm-ace-content-server-prod:11.0.0.6.1  
 image-registry.openshift-image-registry.svc.cluster.local:5000/mq/ibm-mqadvanced-server-integration  
 
+### Login to ACE
 `login to ACE admin/Passw0rd`  
 
 ### Create integration server
