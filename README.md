@@ -60,19 +60,19 @@ Share nfs volume from the server for RWX
 
 Persistent Volume  
 in OpenShift - Storage - Persistent volumes - create  
-_apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: acepv
-spec:
-  capacity:
-    storage: 2Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
-  nfs:
-    path: /mnt/nfs/ace
+_apiVersion: v1  
+kind: PersistentVolume  
+metadata:  
+  name: acepv  
+spec:  
+  capacity:  
+    storage: 2Gi  
+  accessModes:  
+    - ReadWriteMany  
+  persistentVolumeReclaimPolicy: Recycle  
+  storageClassName: nfs  
+  nfs:  
+    path: /mnt/nfs/ace  
     server: 192.168.28.17_
 
 Persistent Volume Claim  
