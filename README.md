@@ -28,7 +28,7 @@ cluster_nodes:
 default_admin_password: Passw0rd  
 password_rules:  
 - '(.*)'
-storage_class: thin_
+storage_class: thin
 ```
 
 ### Run the installation
@@ -76,7 +76,7 @@ spec:
   storageClassName: nfs  
   nfs:  
     path: /mnt/nfs/ace  
-    server: 192.168.28.17_
+    server: 192.168.28.17
 ```
 
 Persistent Volume Claim  
@@ -95,7 +95,7 @@ spec:
     requests:  
       storage: 1Gi  
   storageClassName: nfs  
-  volumeMode: Filesystem_
+  volumeMode: Filesystem
 ```
 `oc create -n ace -f pvc.yaml`  
 
