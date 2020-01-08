@@ -14,7 +14,6 @@ Login to load_balancer
 
 ### Edit config files
 installer_files/cluster/config.yaml	- insert nodes, password, storage  
-
 _cluster_nodes:  
   master:  
     - worker1.cp4i.tec.cz.ibm.com  
@@ -27,7 +26,7 @@ _cluster_nodes:
     - worker2.cp4i.tec.cz.ibm.com  
 default_admin_password: Passw0rd  
 password_rules:  
-- '(.*)'
+\- '(.*)'
 storage_class: thin_
 
 ### Run the installation
@@ -35,23 +34,23 @@ storage_class: thin_
 
 ### Access the UI
 ICP / CloudPak / Catalog  
-	https://icp-console.apps.cp4i.tec.cz.ibm.com:443  
-	admin / Passw0rd  
-CP4I
-	https://ibm-icp4i-prod-integration.apps.cp4i.tec.cz.ibm.com  
-OpenShift console
-	https://console-openshift-console.apps.cp4i.tec.cz.ibm.com  
+https://icp-console.apps.cp4i.tec.cz.ibm.com:443  
+admin / Passw0rd  
+CP4I  
+https://ibm-icp4i-prod-integration.apps.cp4i.tec.cz.ibm.com  
+OpenShift console  
+https://console-openshift-console.apps.cp4i.tec.cz.ibm.com  
 
 
 ### Get imagePullSecret
-`oc get secret -n ace`
+`oc get secret -n ace`  
 e.g. "deployer-dockercfg-bwfv5"
 
 ### Prepare StorageClass, persistent volume
-oc get pv
-oc get storageclasses
+`oc get pv`
+`oc get storageclasses`
 
-Share nfs volume from the server for RWX
+Share nfs volume from the server for RWX  
 `cat /etc/exports`  
 `cd /mnt/nfs`  
 `mkdir ace`  
@@ -59,8 +58,8 @@ Share nfs volume from the server for RWX
 `mkdir ace01`  
 `chmod -R 777 .`  
 
-Persistent Volume
-in OpenShifte - Storage - Persistent volumes - create
+Persistent Volume  
+in OpenShift - Storage - Persistent volumes - create
 _apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -76,8 +75,8 @@ spec:
     path: /mnt/nfs/ace
     server: 192.168.28.17_
 
-Persistent Volume Claim
-In OpenShift create new PV claim, swith to YAML view, copy to .yaml file, edit. Create from CLI.
+Persistent Volume Claim  
+In OpenShift create new PV claim, swith to YAML view, copy to .yaml file, edit. Create from CLI.  
 
 _kind: PersistentVolumeClaim  
 apiVersion: v1  
@@ -93,7 +92,7 @@ spec:
   storageClassName: nfs  
   volumeMode: Filesystem_
 
-oc create -n ace -f pvc.yaml
+`oc create -n ace -f pvc.yaml`  
 
 ### Create ACE instance
 In GUI - create ACE instance:  
@@ -112,4 +111,4 @@ image-registry.openshift-image-registry.svc.cluster.local:5000/mq/ibm-mqadvanced
 `login to ACE admin/Passw0rd`  
 
 ### Create integration server
-Add Server, Add BAR file
+Add Server, Add BAR file  
