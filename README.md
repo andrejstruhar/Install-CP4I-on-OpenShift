@@ -1,20 +1,19 @@
 # Install-CP4I-on-OpenShift
-Installation of IBM CloudPak for Integration 19.4.1 on RH OpenShift 4.2
+## Installation of IBM CloudPak for Integration 19.4.1 on RH OpenShift 4.2
 
-Install common services
-Prihlasit na load_balancer
-export KUBECONFIG=~/cp4i/auth/kubeconfig
-oc login --username=kubeadmin --password=7zNfS-ux6zp-zJCLD-I6Skb
+### Install common services
+Login to load_balancer
+`export KUBECONFIG=~/cp4i/auth/kubeconfig`  
+`oc login --username=username --password=password`  
 
-sudo apt  install docker.io
-tar xvf ibm-cp-int-2019.4.x-offline.tar.gz
-tar xvf installer_files/cluster/images/common-services-armonk-x86_64.tar.gz -O | sudo docker load
-oc config view --flatten >kubeconfig
+`sudo apt  install docker.io`  
+`tar xvf ibm-cp-int-2019.4.x-offline.tar.gz`  
+`tar xvf installer_files/cluster/images/common-services-armonk-x86_64.tar.gz -O | sudo docker load`  
+`oc config view --flatten >kubeconfig`  
 
-installer_files/cluster/config.yaml	- doplnit nodes, heslo, storage
+installer_files/cluster/config.yaml	- insert nodes, password, storage
 
----
-cluster_nodes:
+*cluster_nodes:
   master:
     - worker1.cp4i.tec.cz.ibm.com
     - worker2.cp4i.tec.cz.ibm.com
@@ -27,8 +26,7 @@ cluster_nodes:
 
 default_admin_password: Passw0rd
 password_rules:
-#   - '^([a-zA-Z0-9\-]{32,})$'
-- '(.*)'
+- '(.*)'*
 
 storage_class: thin
 ---
